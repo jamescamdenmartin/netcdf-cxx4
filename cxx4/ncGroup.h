@@ -361,7 +361,7 @@ namespace netCDF
     NcGroupAtt putAtt(const std::string& name, const NcType& type, size_t len, const long long* dataValues) const ;
     
     /*!
-      Creates a new NetCDF group attribute or if already exisiting replaces it.
+      Creates a new NetCDF group attribute or if already existing replaces it.
       If you are writing a _Fill_Value_ attribute, and will tell the HDF5 layer to use
       the specified fill value for that variable.
       \par

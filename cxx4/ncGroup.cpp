@@ -618,7 +618,7 @@ set<NcGroupAtt> NcGroup::getAtts(const string& name,NcGroup::Location location) 
 
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const string& dataValues) const {
   ncCheckDefineMode(myId);
   ncCheck(nc_put_att_text(myId,NC_GLOBAL,name.c_str(),dataValues.size(),dataValues.c_str()),__FILE__,__LINE__);
@@ -626,7 +626,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const string& dataValues) const {
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const unsigned char* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -639,7 +639,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const signed char* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -652,7 +652,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, short datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -665,7 +665,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, short datumVa
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, int datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -677,7 +677,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, int datumValu
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, long datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -689,7 +689,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, long datumVal
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, float datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -702,7 +702,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, float datumVa
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, double datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -715,7 +715,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, double datumV
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned short datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -727,7 +727,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned shor
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned int datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -739,7 +739,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned int 
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, long long datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -752,7 +752,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, long long dat
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned long long datumValue) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -765,7 +765,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, unsigned long
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const short* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -778,7 +778,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const int* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -790,7 +790,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const long* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -802,7 +802,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const float* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -815,7 +815,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const double* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -828,7 +828,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const unsigned short* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -840,7 +840,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const unsigned int* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -852,7 +852,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const long long* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -865,7 +865,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const unsigned long long* dataValues) const {
   ncCheckDefineMode(myId);
   NcType::ncType typeClass(type.getTypeClass());
@@ -878,7 +878,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, c
 }
 
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
 NcGroupAtt NcGroup::putAtt(const string& name, size_t len, const char** dataValues) const {
   ncCheckDefineMode(myId);
   ncCheck(nc_put_att_string(myId,NC_GLOBAL,name.c_str(),len,dataValues),__FILE__,__LINE__);
@@ -886,7 +886,7 @@ NcGroupAtt NcGroup::putAtt(const string& name, size_t len, const char** dataValu
   return getAtt(name);
 }
 
-//  Creates a new NetCDF group attribute or if already exisiting replaces it.
+//  Creates a new NetCDF group attribute or if already existing replaces it.
  NcGroupAtt NcGroup::putAtt(const string& name, const NcType& type, size_t len, const void* dataValues) const {
   ncCheckDefineMode(myId);
   ncCheck(nc_put_att(myId,NC_GLOBAL,name.c_str(),type.getId(),len,dataValues),__FILE__,__LINE__);
