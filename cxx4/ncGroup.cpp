@@ -894,7 +894,11 @@ NcGroupAtt NcGroup::putAtt(const string& name, size_t len, const char** dataValu
   return getAtt(name);
 }
 
-
+//  Deletes a NetCDF group attribute
+void NcGroup::delAtt(const string& name) const {
+  ncCheckDefineMode(myId);
+  ncCheck(nc_del_att(myId,NC_GLOBAL,name.c_str()),__FILE__,__LINE__);
+}
 
 // /////////////
 // NcDim-related methods

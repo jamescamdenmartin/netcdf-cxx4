@@ -359,6 +359,7 @@ namespace netCDF
     /*! \overload
      */
     NcGroupAtt putAtt(const std::string& name, const NcType& type, size_t len, const long long* dataValues) const ;
+    
     /*!
       Creates a new NetCDF group attribute or if already exisiting replaces it.
       If you are writing a _Fill_Value_ attribute, and will tell the HDF5 layer to use
@@ -375,8 +376,13 @@ namespace netCDF
       \return            The NcGroupAtt object for this new netCDF attribute.
     */
     NcGroupAtt putAtt(const std::string& name, const NcType& type, size_t len, const void* dataValues) const ;
-
-
+    
+    /*!
+      Deletes a NetCDF group attribute.
+      \par
+      \param name        Name of attribute.
+    */
+    void delAtt(const std::string& name) const ;
 
     // /////////////
     // NcDim-related methods
