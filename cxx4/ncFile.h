@@ -48,6 +48,20 @@ namespace netCDF
 
       NcFile(const std::string& filePath, int ncFileFlags);
 
+      /*!
+      Opens an in-memory netCDF file of a specified format.
+      \param path           Name of netCDF optional path.
+      \param fMode          The file mode:
+                             - 'read'    File of size bytes exists at memory, open for read-only.
+                             - 'write'   File of size bytes exists at memory, open for writing.
+                             - 'newFile' Creates a new file in memory, allocating an initial buffer of size bytes.
+      \param size           Either the size in bytes of a file already in memory, or number of bytes to allocate when creating a memory file
+      \param memory         Pointer to the start of a file in memory
+      \param memory_locked  If true libnetCDF is not given control of the passed in memory - it will never attempt to allocate more memory or free. 
+                            If false libnetCDF will reallocate memory as needed, ownership of the provided buffer is given to libnetCDF.
+      */
+      NcFile(const std::string& path, const FileMode fMode, const FileFormat fFormat, size_t size, void* memory, bool memory_locked );
+
 
       /*!
 	Opens a netCDF file.
@@ -103,7 +117,7 @@ namespace netCDF
       */
       void open(const std::string& filePath, FileMode fMode, FileFormat fFormat);
       /*!
-      Creates a netCDF file of a specified format.
+      Opens or creates an in-memory netCDF file of a specified format.
       \param path           Name of netCDF optional path.
       \param fMode          The file mode:
                              - 'read'    File of size bytes exists at memory, open for read-only.

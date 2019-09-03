@@ -180,6 +180,12 @@ NcFile::NcFile(const string& filePath, const FileMode fMode, const FileFormat fF
   open(filePath, fMode, fFormat);
 }
 
+// constructor for in memory file
+NcFile::NcFile(const string& path, const FileMode fMode, const FileFormat fFormat, size_t size, void* memory, bool memory_locked )
+{
+  open(path, fMode, fFormat, size, memory, memory_locked );
+}
+
 
 /*! Allow for the explicit creation of a file using a path and NC_ file flags from netcdf.h
  *
