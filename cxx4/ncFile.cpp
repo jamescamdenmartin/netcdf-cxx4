@@ -19,7 +19,16 @@ NcFile::~NcFile()
   // causes undefined behaviour! so just printing a warning message
   try
   {
-    close();
+    if(!isMemIOFile){
+        close();
+    }else{ // If it's an in memory file, we need to free the memory
+        bool memclose_success; 
+        size_t size;           
+        void* memory;
+        tie(memclose_success, size, memory) = close_memio();
+        if(memclose_success) 
+            free(memory);
+    }
   }
   catch (NcException &e)
   {
@@ -35,6 +44,21 @@ void NcFile::close()
   }
 
   nullObject = true;
+}
+
+// Close an in-memory netCDF, getting a pointer to the final memory and size.
+// Whoever calls this is now in charge of freeing that memory.
+tuple<bool, size_t, void*> NcFile::close_memio()
+{
+  if (!nullObject && isMemIOFile) {
+    NC_memio memio = {};
+    ncCheck(nc_close_memio(myId, &memio),__FILE__,__LINE__);
+    g_ncid = -1;
+    nullObject = true;
+    return make_tuple(true, memio.size, memio.memory);
+  }else{
+    return make_tuple(false, 0, nullptr);
+  }
 }
 
 // Constructor generates a null object.
@@ -97,6 +121,56 @@ void NcFile::open(const string& filePath, const FileMode fMode)
 
   g_ncid = myId;
 
+  nullObject=false;
+}
+
+// Either open a file from a passed in chunk of memory, or create a new file in memory
+void NcFile::open(const string& path, const FileMode fMode, const FileFormat fFormat, size_t size, void* memory, bool memory_locked )
+{
+  if (!nullObject)
+    close();
+
+  int format;
+  
+  NC_memio memio = {};
+  memio.size = size;
+  memio.memory = memory;
+  if(memory_locked)
+    memio.flags = NC_MEMIO_LOCKED;
+  else
+    memio.flags = 0;
+  
+  switch (fFormat)
+    {
+    case NcFile::classic:
+	format = 0;
+	break;
+    case NcFile::classic64:
+	format = NC_64BIT_OFFSET;
+	break;
+    case NcFile::nc4:
+	format = NC_NETCDF4;
+	break;
+    case NcFile::nc4classic:
+	format = NC_NETCDF4 | NC_CLASSIC_MODEL;
+	break;
+    }
+  switch (fMode)
+    {
+    case NcFile::write:
+      ncCheck(nc_open_memio(path.c_str(), format | NC_WRITE, &memio , &myId),__FILE__,__LINE__);
+      break;
+    case NcFile::read:
+      ncCheck(nc_open_memio(path.c_str(), format | NC_WRITE, &memio , &myId),__FILE__,__LINE__);
+      break;
+    case NcFile::newFile:
+    case NcFile::replace:
+      ncCheck(nc_create_mem(path.c_str(), format | NC_WRITE, memio.size, &myId),__FILE__,__LINE__);
+      break;
+    }
+
+  g_ncid = myId;
+  isMemIOFile = true;
   nullObject=false;
 }
 

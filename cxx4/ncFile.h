@@ -1,6 +1,7 @@
 #include <string>
 #include "ncGroup.h"
 #include "netcdf.h"
+#include "netcdf_mem.h"
 
 #ifndef NcFileClass
 #define NcFileClass
@@ -42,7 +43,7 @@ namespace netCDF
       /*!
         Opens a netCDF file.
         \param filePath    Name of netCDF optional path.
-        \aram ncFileFlags File flags from netcdf.h
+        \param ncFileFlags File flags from netcdf.h
       */
 
       NcFile(const std::string& filePath, int ncFileFlags);
@@ -101,9 +102,29 @@ namespace netCDF
                           - 'newFile' Create new file, fail it exists already.
       */
       void open(const std::string& filePath, FileMode fMode, FileFormat fFormat);
+      /*!
+      Creates a netCDF file of a specified format.
+      \param path           Name of netCDF optional path.
+      \param fMode          The file mode:
+                             - 'read'    File of size bytes exists at memory, open for read-only.
+                             - 'write'   File of size bytes exists at memory, open for writing.
+                             - 'newFile' Creates a new file in memory, allocating an initial buffer of size bytes.
+      \param size           Either the size in bytes of a file already in memory, or number of bytes to allocate when creating a memory file
+      \param memory         Pointer to the start of a file in memory
+      \param memory_locked  If true libnetCDF is not given control of the passed in memory - it will never attempt to allocate more memory or free. 
+                            If false libnetCDF will reallocate memory as needed, ownership of the provided buffer is given to libnetCDF.
+      */
+      void open(const std::string& path, const FileMode fMode, const FileFormat fFormat, size_t size, void* memory, bool memory_locked );
 
       //! Close a file before destructor call
       void close();
+      
+      /*!
+      Attempts to close a memory IO netCDF file, returning the size and a pointer to memory if successful.
+      The caller takes ownership of that memory.
+      \return Tuple of success, memory buffer size, pointer to memory buffer
+      */
+      std::tuple<bool, size_t, void*> close_memio();
 
       /*! destructor */
       virtual ~NcFile(); //closes file and releases all resources
@@ -122,6 +143,7 @@ namespace netCDF
 	   NcFile& operator =(const NcFile & rhs);
 	   NcFile(const NcGroup& rhs);
 	   NcFile(const NcFile& rhs);
+       bool isMemIOFile = false;
    };
 
 }
